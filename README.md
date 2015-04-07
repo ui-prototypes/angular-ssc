@@ -13,10 +13,9 @@ A prototype SSC UI built using Angular.js and the SSC
 In order to get things running you'll need to install a few dependencies
  * Node.js (0.10 or later)
  * bower (http://bower.io/)
- * Install the node packages with ```npm install```.
 
 #Install Dependencies 
- * Install required library which required during build and test time. 
+ * Install dependent library which required during build and test time to minify css, html, js, image file. 
  * sudo npm install --save
  * bower install 
  
