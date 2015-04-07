@@ -1,7 +1,7 @@
 <nav class="top-bar" data-topbar  role="navigation" ng-controller="NavbarCtrl">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#/"><img src="assets/images/brocade.png" />SSC</a></h1>
+      <h1><a href="#/"><img src="assets/images/brocade.png" />StealApp Service Controller</a></h1>
     </li>
     <li class="toggle-topbar menu-icon"><a ng-href="#"><span>Menu</span></a></li>
   </ul>
@@ -9,7 +9,7 @@
   <section class="top-bar-section">
     <ul class="right">
       <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
-        <a ng-href="{{item.link}}">{{item.title}}</a>
+        <a ng-href="{{item.link}}"><span class="{{item.font}}"> &nbsp; </span>{{item.title}}</a>
       </li>
     </ul>
     <!--<ul class="left">
