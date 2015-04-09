@@ -21,7 +21,7 @@ In order to get things running you'll need to install a few dependencies
  
 #Running 
  * To run the tests run ```gulp tests```. If you want the test runner to listen for changes to source files and run automatically,
- * To run the server in development mode run ```gulp serve```. The server will automatically restart when changes are detected to the backend source files.
+ * To run the server in development mode run ```gulp exp```. The server will automatically restart when changes are detected to the backend source files.
 
 #Configuration
 To work, the server needs access to a SteelApp Traffic Manager to which it can make REST API requests. Before running the server, go to lib/constants.js and change STM_HOST to point to the IP address of your Traffic Manager.
