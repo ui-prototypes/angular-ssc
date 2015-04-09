@@ -1,31 +1,72 @@
-<div class="container">
+<nav class="top-bar" data-topbar  role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#/"><img src="assets/images/brocade.png" /><span class="ssc_logo">SteelApp Service Controller</span></a></h1>
+    </li>
+    <li class="toggle-topbar menu-icon"><a ng-href="#"><span>Menu</span></a></li>
+  </ul>
 
-  <div ng-include="'components/navbar/navbar.html'"></div>
-  <br />
+  <section class="top-bar-section">
+    <ul class="right">
+      <li><a ng-href="#/">Create Account </a></li>      
+    </ul>
+  </section>
+</nav>
+<br /><br />
+<div class="row">
 
-  <div class="large-3 large-centered columns">
-  <div class="login-box">
-  <div class="row">
-  <div class="large-12 columns">
-    <form>
-       <div class="row">
-         <div class="large-12 columns">
-             <input type="text" name="username" placeholder="Username" />
-         </div>
-       </div>
-      <div class="row">
-         <div class="large-12 columns">
-             <input type="password" name="password" placeholder="Password" />
-         </div>
-      </div>
-      <div class="row">
-        <div class="large-12 large-centered columns">
-          <input type="submit" class="button success center tiny" value="Log In"/>
-        </div>
-      </div>
-    </form>
+  <div class="midium-6 large-6 columns">
+    <h3>Brocade SteelApp Service Controller</h3>
+    <div>
+      Brocade SteelApp Services Controller cost-efficiently automates the deployment, licensing, and metering of application delivery services. Each application is given a dedicated application delivery controller instance in a high-density multi-tenanted platform. Organizations allocate charges to each client application based on hourly metering, offering ADC-as-a-Service to customers and applications.
+    </div>
   </div>
-</div>
-</div>
-</div>
-</div>
+  <div class="midium-5 large-5 columns">
+    <div class="form">
+      <form action="index.html" id="login-form" >
+        <header>
+          Sign In
+        </header>
+        <fieldset>
+          <section>
+            <label>E-mail</label>
+            <label> 
+              <div class="row collapse">
+                <div class="small-11 columns">
+                  <input type="email" name="email">
+                </div>
+                <div class="small-1 columns">
+                  <span class="postfix"><div class="fa fa-user"></div></span>
+                </div>
+              </div>              
+            </label>
+          </section>
+          <section>
+            <label>Password</label>
+            <div class="row collapse">
+              <div class="small-11 columns">
+                <input type="password" name="password"/>
+              </div>
+              <div class="small-1 columns">
+                <span class="postfix"><div class="fa fa-lock"></div></span>
+              </div>
+            </div>
+            <div class="note small">
+              <a href="#/">Forgot password?</a>
+            </div>
+          </section>
+          <section>
+            <label class="checkbox">
+              <input type="checkbox" name="remember" checked="">
+              <i></i>Stay signed in</label>
+            </section>
+          </fieldset>
+          <footer>
+            <button type="submit" class="button tiny right radius">
+              Sign in
+            </button>
+          </footer>
+          </form>
+      </div>
+    </div>
+  </div>
