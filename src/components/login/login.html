@@ -3,14 +3,7 @@
     <li class="name">
       <h1><a href="#/"><img src="assets/images/brocade.png" /><span class="ssc_logo">SteelApp Service Controller</span></a></h1>
     </li>
-    <li class="toggle-topbar menu-icon"><a ng-href="#"><span>Menu</span></a></li>
   </ul>
-
-  <section class="top-bar-section">
-    <ul class="right">
-      <li><a ng-href="#/">Create Account </a></li>      
-    </ul>
-  </section>
 </nav>
 <br /><br />
 <div class="row">
@@ -23,17 +16,22 @@
   </div>
   <div class="midium-5 large-5 columns">
     <div class="form">
-      <form action="index.html" id="login-form" >
+      <form ng-submit="login()">
         <header>
           Sign In
         </header>
         <fieldset>
+        <section>
+        <div data-alert class="alert-box alert radius" ng-show="err">
+          {{message}}  
+        </div>
+          </section>
           <section>
-            <label>E-mail</label>
+            <label>Username</label>
             <label> 
               <div class="row collapse">
                 <div class="small-11 columns">
-                  <input type="email" name="email">
+                  <input type="text" ng-model="user.username">
                 </div>
                 <div class="small-1 columns">
                   <span class="postfix"><div class="fa fa-user"></div></span>
@@ -45,21 +43,16 @@
             <label>Password</label>
             <div class="row collapse">
               <div class="small-11 columns">
-                <input type="password" name="password"/>
+                <input type="password" ng-model="user.password" />
               </div>
               <div class="small-1 columns">
                 <span class="postfix"><div class="fa fa-lock"></div></span>
               </div>
-            </div>
-            <div class="note small">
-              <a href="#/">Forgot password?</a>
-            </div>
+            </div>            
           </section>
           <section>
-            <label class="checkbox">
-              <input type="checkbox" name="remember" checked="">
-              <i></i>Stay signed in</label>
-            </section>
+            <label class="small">(Username: admin, Password: admin)</label>                       
+          </section>
           </fieldset>
           <footer>
             <button type="submit" class="button tiny right radius">

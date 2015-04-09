@@ -11,10 +11,10 @@
       <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
         <a ng-href="{{item.link}}"><span class="{{item.font}}"> &nbsp; </span>{{item.title}}</a>
       </li>
-    </ul>
-    <!--<ul class="left">
-      <li><a ng-href="#">Current date: {{ date | date:'yyyy-MM-dd' }}</a></li>
-    </ul>-->
+      <li>
+        <a ng-href="#/login" ng-click="logout()"><span class="fa fa-sign-out">&nbsp;</span>Logout</a>       
+      </li>
+    </ul>    
   </section>
 </nav>
 <ul class="breadcrumbs">

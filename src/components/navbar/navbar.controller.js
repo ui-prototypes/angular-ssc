@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('ssc')
-  .controller('NavbarCtrl', [ '$scope', '$location', function ($scope, $location) {
+  .controller('NavbarCtrl', [ '$scope', '$location', '$http',function ($scope, $location, $http) {
     $scope.date = new Date();
+        
     $scope.menu = [{
       'title': 'Home',
       'link': '#/',
@@ -11,23 +12,17 @@ angular.module('ssc')
       'title': 'Dashboard',
       'link' :'#/dashboard',
       'font': 'fa fa-dashboard',
-    },{
-      'title': 'About',
-      'link' :'#/about',
-      'font': 'fa fa-info',
-    },{
-      'title': 'Contact',
-      'link' :'#/contact',
-      'font': 'fa fa-phone',
-    },{
-      'title': 'Registration',
-      'link' :'#/registration',
-      'font': 'fa fa-server',
-    },{
+    /*},{
       'title': 'Login',
       'link' :'#/login',
-      'font': 'fa fa-lock',
-    }];    
+      'font': 'fa fa-sign-in',
+    }
+    ,{
+      'title': 'Logout',
+      'link' :'#/logout',
+      'font': 'fa fa-sign-out',*/
+    }
+    ];    
     $scope.isActive = function(route) {           
       route = route.substring(1, route.length); //remove # from begining from route variable 
       return route === $location.path();

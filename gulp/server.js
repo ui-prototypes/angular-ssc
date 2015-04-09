@@ -1,7 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
-
+var nodemon = require('gulp-nodemon');
 var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
 
@@ -44,6 +44,8 @@ module.exports = function(options) {
       server: server,
       browser: browser
     });
+
+
   }
 
   browserSync.use(browserSyncSpa({
@@ -66,9 +68,10 @@ module.exports = function(options) {
   gulp.task('serve:e2e-dist', ['build'], function () {
     browserSyncInit(options.dist, []);
   });
-  //Try to integrate express server 
-  /*
+//Try to integrate express server 
+
   gulp.task('express', ['watch'], function(callback){
+
     if ( node ) {
       console.log('Restarting application server...');
       node.kill();
@@ -86,37 +89,39 @@ module.exports = function(options) {
     callback();
   });
 
-
-  gulp.task('server', function() {
-
-  var server = express();
-
-  // log all requests to the console
-  server.use(logger('dev'));
-  server.use(express.static(options.tmp + '/serve'));
-  
-  server.use(express.static('/.tmp/serve'));
-  server.use(express.static('/bower_components'));
-  server.use(express.static('/src'));
-
-
-  // Serve index.html for all routes to leave routing up to Angular
-  server.all('/*', function(req, res) {
-      res.sendFile('index.html');
+  gulp.task('exp', ['browser-sync'], function () {
   });
 
-  // Start webserver if not already running
-  var s = http.createServer(server);
-  s.on('error', function(err){
-    if(err.code === 'EADDRINUSE'){
-      gutil.log('Development server is already started at port 3000' );
-    }
-    else {
-      throw err;
-    }
+  gulp.task('browser-sync', ['nodemon', 'watch'],function() {
+    browserSync.instance = browserSync.init({
+        proxy: "http://localhost:3000/",
+        //port: 7000,
+        browser: ['google chrome', 'firefox']
+    });
   });
 
-  s.listen(3000);
+  gulp.task('nodemon', function (cb) {
+    var called = false;
+    return nodemon({
+      script: 'app.js'
+    }).on('start', function onStart() {
+      if (!called) {
+        //cb();
+      }
+      called = true;
 
-});*/
+            
+    }).on('restart', function onRestart(){
+
+      setTimeout(function reload() {
+      browserSync.reload({
+        stream: false
+      });
+    }, 500);
+
+    });    
+  });
+
+
+
 };

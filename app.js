@@ -11,6 +11,11 @@ var methodOverride = require('method-override')
 var session = require('express-session');
 var router = express.Router();
 var errorhandler = require('errorhandler')
+var config = require('./config');
+
+var httpProxy = require('http-proxy');
+var request = require('superagent');
+
 
 //==================================================================
 // Define the strategy to be used by PassportJS
@@ -43,8 +48,6 @@ var auth = function(req, res, next){
 
 // Start express application
 var app = express();
-//app.use(require('connect-livereload')());
-
 
 
 // all environments
@@ -64,19 +67,30 @@ app.use(router);
 //app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.static(path.join(__dirname, '/.tmp/serve')));
-app.use(express.static(path.join(__dirname, '/bower_components')));
-app.use(express.static(path.join(__dirname, '/src')));
+app.use('/bower_components',express.static(path.join(__dirname, 'bower_components')));
+app.use('/src',express.static(path.join(__dirname, '/src')));
+app.use('/components',express.static(path.join(__dirname, '/src/components')));
+app.use('/app',express.static(path.join(__dirname, '/src/app')));
+app.use('/assets',express.static(path.join(__dirname, '/src/assets')));
 
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(errorhandler());
+	  app.use(errorhandler());
+    var browserSync = require('browser-sync');
+  var bs = browserSync();
+  app.use(require('connect-browser-sync')(bs));
 }
+/* browser reload
+	var browserSync = require('browser-sync');
+	var bs = browserSync({ logSnippet: false });
+	app.use(require('connect-browser-sync')(bs));
+*/
 
 //==================================================================
 // routes
 app.get('/', function(req, res){
-  res.sendfile('./src/index.html');
+  res.sendfile('index.html');
 });
 
 app.get('/users', auth, function(req, res){
@@ -97,6 +111,7 @@ app.post('/login', passport.authenticate('local'), function(req, res) {
 
 // route to log out
 app.post('/logout', function(req, res){
+
   req.logOut();
   res.send(200);
 });
