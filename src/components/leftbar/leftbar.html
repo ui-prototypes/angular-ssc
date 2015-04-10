@@ -1,0 +1,42 @@
+<aside id="left-panel" ng-controller="LeftbarCtrl">
+  <div class="login-info">
+    <span>
+      <a ng-href="#/"> 
+        <span>
+          Anuj Patel
+        </span>
+        <i class="fa fa-angle-down"></i>
+      </a> 
+    </span>
+  </div>
+  <nav>
+    <ul>
+      <li class="active">
+        <a ui-sref="home.dashboard" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+      </li>          
+      <li class="has-child">
+        <a href="#"><i class="fa fa-lg fa-fw fa-cubes"></i> <span>Controller</span></a>
+        <ul>
+          <li>
+            <a ui-sref="home.instances" >Instances</a>
+          </li>
+          <li>
+            <a ui-sref="home.ih" >Instance Host</a>
+          </li>
+          <li>
+            <a ui-sref="home.ihnetworking" >Instance Host Networking</a>
+          </li>
+          <li>
+            <a ui-sref="home.appliance" >Appliance</a>
+          </li>
+          <li>
+            <a ui-sref="home.stmclusters" >STM Clusters</a>
+          </li>
+        </ul>
+      </li>                    
+      <li>
+        <a ui-sref="home.support"><i class="fa fa-lg fa-fw fa-support"></i> <span>Support</span></a>
+      </li>
+    </ul>
+  </nav>      
+</aside>

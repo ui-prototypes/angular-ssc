@@ -64,6 +64,68 @@
 }
 
 
+#footer {
+  height: 52px;
+  padding: 15px 13px 0;
+  padding-left: 233px;
+  border-top: 1px solid #CECECE;
+  background: #2a2725;
+  width: 100%;
+  position: absolute;
+  display: block;
+  bottom: 0;
+  color: #fff;
+}
+
 // injector
 // endinjector
+
+#left-panel {
+  background: #D3D3D3;
+  height: 100%;
+
+}
+#left-panel .login-info {
+  padding-left: 1.5em;
+  display: block;
+  overflow: hidden;
+  margin-left: 0;
+  list-style: none;
+  background-color: #f4f4f4;  
+  height: 1.9em;
+  
+  border-width: 1px 1px!important;
+  border-radius: 0px !important;
+}
+
+.breadcrumbs {
+  display: block;
+  overflow: hidden;
+  margin-left: 0;
+  list-style: none;
+  background-color: #f4f4f4;  
+  border-width: 1px 0px!important;
+  border-radius: 0px !important;
+}
+#left-panel nav ul li > a {
+  color: #000;
+}
+
+#left-panel nav > ul, li {
+  list-style-type: none;
+}
+
+#left-panel nav .has-child ul > li {
+  padding-left: 0.8em;
+}
+
+.row{
+  height:100%
+}
+
+#content {
+  padding: 0em 1em;
+}
+
+
 

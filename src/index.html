@@ -26,6 +26,17 @@
     <![endif]-->
 
     <div ui-view></div>
+    <div ui-view="header"></div>
+    <div data-equalizer>
+    <div class="small-2 left" data-equalizer-watch>
+    <div ui-view="leftbar"></div>
+    </div>
+    <div class="small-10 left" data-equalizer-watch>
+    <div ui-view="breadcrumbs"></div>
+    <div ui-view="content" id="content"></div>
+    </div>
+    </div>
+    <div ui-view="footer"></div>
 
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->
@@ -44,10 +55,11 @@
     <!-- endbuild -->
     
     <script>
-        $(document).foundation('topbar', 'reflow');
+        $(document).foundation('topbar', 'equalizer','reflow');        
         $(function() {
             $('html,body').hide().fadeIn('slow');
         });
+
     </script>
     <script type='text/javascript' id="__bs_script__">//<![CDATA[
     document.write("<script async src='http://HOST:3001/browser-sync/browser-sync-client.2.1.6.js'><\/script>".replace(/HOST/g, location.hostname).replace(/PORT/g, location.port));

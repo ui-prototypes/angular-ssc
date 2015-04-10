@@ -43,15 +43,112 @@ angular.module('ssc', ['ngResource', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSan
         }
       };
     });
-
     $stateProvider
+      .state('home', {
+        url: '/',
+        views: {
+          'header': {
+                templateUrl: '/components/header/header.html',
+                controller: 'HeaderCtrl'
+            },
+            'leftbar': {
+                templateUrl: '/components/leftbar/leftbar.html',
+                controller: 'LeftbarCtrl'
+            },
+            'breadcrumbs': {
+                templateUrl: '/components/navbar/navbar.html',
+                controller: 'NavbarCtrl'
+            },
+            'content': {
+                templateUrl: '/components/main/main.html',
+                controller: 'NavbarCtrl' 
+            },
+            /*'footer': {
+                templateUrl: '/components/footer/footer.html',
+                controller: 'FooterCtrl'
+            }*/
+        },
+        resolve: {
+          loggedin: checkLoggedin
+        },
+      })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'components/login/login.html',
+        controller: 'LoginCtrl'
+       })
+      .state('home.dashboard', {
+        url: 'dashboard',
+        views: {            
+            'content@': {
+                templateUrl: 'components/dashboard/dashboard.html',
+                controller: 'DashboardCtrl'
+            },            
+        } 
+      })
+      .state('home.support', {
+        url: 'support',
+        views: {            
+            'content@': {
+                templateUrl: 'components/support/support.html',
+                controller: 'SupportCtrl'
+            },            
+        } 
+      })
+      .state('home.ih', {
+        url: 'ih',
+        views: {            
+            'content@': {
+                templateUrl: 'components/ih/ih.html',
+                controller: 'IhCtrl'
+            },            
+        } 
+      })
+      .state('home.ihnetworking', {
+        url: 'ihnetworking',
+        views: {            
+            'content@': {
+                templateUrl: 'components/ihnetworking/ihnetworking.html',
+                controller: 'IhnetworkingCtrl'
+            },            
+        } 
+      })
+      .state('home.instances', {
+        url: 'instances',
+        views: {            
+            'content@': {
+                templateUrl: 'components/instances/instances.html',
+                controller: 'InstancesCtrl'
+            },            
+        } 
+      })
+      .state('home.appliance', {
+        url: 'appliance',
+        views: {            
+            'content@': {
+                templateUrl: 'components/appliance/appliance.html',
+                controller: 'ApplianceCtrl'
+            },            
+        } 
+      })
+      .state('home.stmclusters', {
+        url: 'stmclusters',
+        views: {            
+            'content@': {
+                templateUrl: 'components/stmclusters/stmclusters.html',
+                controller: 'StmclustersCtrl'
+            },            
+        } 
+      });
+
+    /*$stateProvider
       .state('home', {
         url: '/',
         templateUrl: 'components/main/main.html',
         controller: 'MainCtrl',
         resolve: {
           loggedin: checkLoggedin
-        }
+        },
       })
       .state('login', {
         url: '/login',
@@ -66,7 +163,7 @@ angular.module('ssc', ['ngResource', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSan
         resolve: {
           loggedin: checkLoggedin
         }
-       });      
+       });      */
     $urlRouterProvider.otherwise('/login');
   })
   .run(function($rootScope, $http){
