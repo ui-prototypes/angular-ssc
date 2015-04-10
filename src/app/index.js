@@ -56,12 +56,12 @@ angular.module('ssc', ['ngResource', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSan
                 controller: 'LeftbarCtrl'
             },
             'breadcrumbs': {
-                templateUrl: '/components/navbar/navbar.html',
-                controller: 'NavbarCtrl'
+                templateUrl: '/components/breadcrumbs/breadcrumbs.html',
+                controller: 'BreadcrumbsCtrl'
             },
             'content': {
                 templateUrl: '/components/main/main.html',
-                controller: 'NavbarCtrl' 
+                controller: 'MainCtrl' 
             },
             /*'footer': {
                 templateUrl: '/components/footer/footer.html',
