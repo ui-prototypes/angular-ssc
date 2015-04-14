@@ -48,10 +48,10 @@ var auth = function(req, res, next){
 
 // Start express application
 var app = express();
-
+app.enable('trust proxy');
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 4000);
 app.set('views', __dirname + './tmp/serve');
 app.set('view engine', 'ejs');
 //app.engine('.html', require('ejs').renderFile());
@@ -60,7 +60,7 @@ app.use(logger('dev'));
 app.use(cookieParser()); 
 app.use(bodyParser());
 app.use(methodOverride());
-app.use(session({ secret: 'securedsession' }));
+app.use(session({ secret: 'securedsession',cookie:{maxAge:null} }));
 app.use(passport.initialize()); // Add passport initialization
 app.use(passport.session());    // Add passport initialization
 app.use(router);
@@ -114,6 +114,19 @@ app.post('/logout', function(req, res){
 
   req.logOut();
   res.send(200);
+});
+
+var proxy = httpProxy.createProxyServer({ secure: false});
+  proxy.on('error',function(err,req,res) {
+      console.log(err.toString());
+      res.writeHead(500, {
+          'Content-Type': 'text/plain'
+      });
+      res.end('Unable to proxy request to WEB3: '+err.toString());
+  });
+app.all('/*',function(req,res) {
+  console.log(req.url);
+  proxy.web(req,res,{ target: 'http://10.5.40.188/' });  
 });
 //==================================================================
 

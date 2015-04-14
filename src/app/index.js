@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ssc', ['ngResource', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.grid', 'ui.grid.pagination'])
+angular.module('ssc', ['ngResource', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.grid', 'ui.grid.pagination', 'services'])
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
     var checkLoggedin = function($q, $timeout, $http, $location, $rootScope, $window){
@@ -173,5 +173,6 @@ angular.module('ssc', ['ngResource', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSan
       $rootScope.message = 'Logged out.';
       $http.post('/logout');
     };
-  });
+  })
+  .constant('WEB3_ENDPOINT', 'http://10.5.40.188');
 

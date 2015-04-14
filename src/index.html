@@ -24,7 +24,6 @@
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your exp  erience.</p>
     <![endif]-->
-
     <div ui-view></div>
     <div ui-view="header"></div>
     <div data-equalizer>
@@ -33,6 +32,7 @@
     </div>
     <div class="small-10 left" data-equalizer-watch>
     <div ui-view="breadcrumbs"></div>
+    <div ui-view="view" id="view"></div>
     <div ui-view="content" id="content"></div>
     </div>
     </div>
@@ -55,15 +55,16 @@
     <!-- endbuild -->
     
     <script>
-        $(document).foundation('topbar', 'equalizer','reflow');        
+        //$(document).foundation('topbar', 'equalizer','reflow');        
         $(function() {
             $('html,body').hide().fadeIn('slow');
         });
 
     </script>
-    <script type='text/javascript' id="__bs_script__">//<![CDATA[
+    <script src="assets/js/spin.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script type='text/javascript' id="__bs_script__">//<![CDATA[
     document.write("<script async src='http://HOST:3001/browser-sync/browser-sync-client.2.1.6.js'><\/script>".replace(/HOST/g, location.hostname).replace(/PORT/g, location.port));
-//]]></script>
+//]]></script>-->
 
   </body>
 </html>
