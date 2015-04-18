@@ -14,7 +14,6 @@ var errorhandler = require('errorhandler')
 var config = require('./config');
 
 var httpProxy = require('http-proxy');
-var request = require('superagent');
 
 
 //==================================================================

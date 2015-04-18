@@ -1,79 +1,53 @@
 'use strict';
 
 angular.module('ssc')
-.controller('DashboardCtrl', function ($scope) {    
-    $scope.gridOptions1 = {
-        paginationPageSizes: [25, 50, 75],
-        paginationPageSize: 5,
-        columnDefs: [
-        { name: 'name' },
-        { name: 'gender' },
-        { name: 'company' }
-        ]
+.controller('DashboardCtrl', function ($scope, DashboardService, ViewSpinner, $interval) {    
+    $scope.dashboard = {};
+    $scope.dashboard.cpu = 0;
+    $scope.dashboard.memory = 0;
+    $scope.dashboard.uptime = "";
+    var gcpu = new JustGage({
+                    id: "cpu_usage",
+                    value: $scope.dashboard.cpu,
+                    min: 0,
+                    max: 100,
+                    title: "CPU",
+                    label: '%',
+                });
+    var gmemory = new JustGage({
+                    id: "memory_usage",
+                    value: $scope.dashboard.memory,
+                    min: 0,
+                    max: 100,
+                    title: "Memory",                    
+                });    
+    $scope.dashboard_update = function(){ 
+        //ViewSpinner.spin();
+        $scope.loading = true;
+        DashboardService.query({}, 
+            function(d){
+
+            if (d.properties !== undefined){                
+                $scope.dashboard.cpu = d.properties.cpuUtil;
+                $scope.dashboard.memory = d.properties.memoryUtil;
+                $scope.dashboard.uptime = d.properties.uptimeStr;
+                gcpu.refresh($scope.dashboard.cpu);
+                gmemory.refresh($scope.dashboard.memory);
+            }
+            //ViewSpinner.stop();
+            $scope.loading = false;
+        }, function(d){
+            //ViewSpinner.stop();
+            $scope.loading = false;
+        });
     };
+    $scope.dashboard_update();
 
-
-
-  /*$http.get('/data/100.json')
-  .success(function (data) {
-    $scope.gridOptions1.data = data;
-    $scope.gridOptions2.data = data;
-});*/
-$scope.gridOptions1.data = [{
-    'name': 'Ethel Price',
-    'gender': 'female',
-    'company': 'Enersol'
-    },
-    {'name': 'Valarie Atkinson',
-    'gender': 'female',
-    'company': 'Hopeli'
-    },
-    {'name': 'Schroeder Mathews',
-    'gender': 'male',
-    'company': 'Polarium'
-    },
-    {'name': 'Lynda Mendoza',
-    'gender': 'female',
-    'company': 'Dogspa'
-    },
-    {'name': 'Sarah Massey',
-    'gender': 'female',
-    'company': 'Bisba'
-    },
-    {'name': 'Dawson Barber',
-    'gender': 'male',
-    'company': 'Dymi'
-    },
-    {'name': 'Bruce Strong',
-    'gender': 'male',
-    'company': 'Xyqag'
-    },
-    {'name': 'Nellie Whitfield',
-    'gender': 'female',
-    'company': 'Exospace'
-    },
-    {'name': 'Jackson Macias',
-    'gender': 'male',
-    'company': 'Aquamate'
-    },
-    {'name': 'Pena Pena',
-    'gender': 'male',
-    'company': 'Quarx'
-    },
-    {'name': 'Lelia Gates',
-    'gender': 'female',
-    'company': 'Proxsoft'
-    },
-    {'name': 'Letitia Vasquez',
-    'gender': 'female',
-    'company': 'Slumberia'
-    },
-    {'name': 'Trevino Moreno',
-    'gender': 'male',
-    'company': 'Conjurica'
-    },
-    {'name': 'Barr Page',
-    'gender': 'male',
-    'company': 'Apex'
-    }];
+    // Start Interval
+    var timerData = 
+    $interval(function () {
+        if(!$scope.loading){
+           $scope.dashboard_update();
+        }
+    }, 10000);
 });

@@ -10,13 +10,21 @@ angular.module('ssc')
         { name: 'id_name' },
         { name: 'status' },
         { name: 'username' },
-        { name: 'bandwidth' },
-        { name: 'stm_feature_pack'}
+        { name: 'cpu_cores' },
+        { name: 'usage_info' },
+        { name: 'host_version' },
+        { name: 'info'}
         ]
     };
-  	InstantHostService.query({}, function(d){  	  		
-    $scope.gridOptions1.data = d.properties.config.host;    
-    ViewSpinner.stop();
-  	});
+    $scope.gridOptions1.data = [];
+  	InstantHostService.query({}, function(d){
+      if (d.properties !== undefined){
+        $scope.gridOptions1.data = d.properties.config.host;    
+      }
+      ViewSpinner.stop();
+
+  	}, function(d){
+      ViewSpinner.stop();
+    });
   	
   });

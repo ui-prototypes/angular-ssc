@@ -13,8 +13,14 @@ angular.module('ssc')
         ]
     };
   	InstanceService.query({}, function(d){  	  		
-    $scope.gridOptions1.data = d.properties.config.instance;    
-    ViewSpinner.stop();
-  	});
+      if (d.properties !== undefined){
+        $scope.gridOptions1.data = d.properties.config.instance;    
+      }
+      ViewSpinner.stop();
+
+    }, function(d){
+      ViewSpinner.stop();
+    });
+    
   	
   });
