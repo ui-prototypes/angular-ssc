@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var methodOverride = require('method-override')
 var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 var router = express.Router();
 var errorhandler = require('errorhandler')
 var config = require('./config');
@@ -59,7 +60,18 @@ app.use(logger('dev'));
 app.use(cookieParser()); 
 app.use(bodyParser());
 app.use(methodOverride());
-app.use(session({ secret: 'securedsession',cookie:{maxAge:null} }));
+//app.use(session({ secret: 'securedsession',cookie:{maxAge:null} }));
+app.use(session({
+  store: new RedisStore({
+    host: '127.0.0.1',       //where redis store is
+    port: 6379,              //default redis port
+    prefix: 'sess',          //prefix for sessions name is store
+    pass: 'passwordtoredis'  //password to redis db
+  }),
+  secret: 'cookiesecret',        //cookie secret
+  key: 'express.sid'
+}));
+
 app.use(passport.initialize()); // Add passport initialization
 app.use(passport.session());    // Add passport initialization
 app.use(router);
@@ -108,6 +120,10 @@ app.post('/login', passport.authenticate('local'), function(req, res) {
   res.send(req.user);
 });
 
+app.post('/logintesting', passport.authenticate('local'), function(req, res) {
+  res.send(req.user);
+});
+
 // route to log out
 app.post('/logout', function(req, res){
 
@@ -132,3 +148,7 @@ app.all('/*',function(req,res) {
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+
+
